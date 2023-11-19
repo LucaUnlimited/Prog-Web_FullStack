@@ -113,6 +113,7 @@ export default function FormLibro() {
       fechaIngreso: fechaIngreso,
       genero: genero,
     };
+
     if (actualizar) {
       handlerActualizarLibro(libro);
       setActualizar(false);

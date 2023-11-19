@@ -49,69 +49,70 @@ export default function Bibliotecas(props) {
     eliminarBiblioteca({ variables: { input: { _id: idBiblioteca } } });
   };
 
-  return (
-    <div>
-      <TableContainer
-        component={Paper}
-        sx={{
-          margin: "20px",
-          border: "2px solid RGBA(255, 84, 47,0.4)",
-          borderRadius: "15px",
-          backgroundColor: "#ECF0F1",
-        }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Nombre</TableCell>
-              <TableCell align="left">Correo Electronico</TableCell>
-              <TableCell align="left">ciudad</TableCell>
-              <TableCell align="left">cp</TableCell>
-              <TableCell align="right">direccion</TableCell>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right" sx={{ marginRight: "60px" }}>
-                {" "}
-              </TableCell>
-            </TableRow>{" "}
-          </TableHead>
-          <TableBody>
-            {data.bibliotecas.map((biblioteca) => (
-              <TableRow key={biblioteca._id}>
-                <TableCell align="left">{biblioteca.nombre}</TableCell>
-                <TableCell align="left">
-                  {biblioteca.correoElectronico}
+  if (data.bibliotecas.length != 0)
+    return (
+      <div>
+        <TableContainer
+          component={Paper}
+          sx={{
+            margin: "20px",
+            border: "2px solid RGBA(255, 84, 47,0.4)",
+            borderRadius: "15px",
+            backgroundColor: "#ECF0F1",
+          }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="left">Nombre</TableCell>
+                <TableCell align="left">Correo Electronico</TableCell>
+                <TableCell align="left">ciudad</TableCell>
+                <TableCell align="left">cp</TableCell>
+                <TableCell align="right">direccion</TableCell>
+                <TableCell align="right">ID</TableCell>
+                <TableCell align="right" sx={{ marginRight: "60px" }}>
+                  {" "}
                 </TableCell>
-                <TableCell align="left">
-                  {biblioteca.domicilio.ciudad}
-                </TableCell>
-                <TableCell align="left">{biblioteca.domicilio.cp}</TableCell>
-                <TableCell align="left">
-                  {biblioteca.domicilio.direccion}
-                </TableCell>
-                <TableCell align="right">{biblioteca._id}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => props.handlerActualizar(biblioteca)}
-                  >
-                    <EditIcon />
-                  </Button>
-                  &nbsp;
-                  <Button
-                    sx={{ background: "#C70039", marginRight: "30px" }}
-                    variant="contained"
-                    color="error"
-                    onClick={() => handlerEliminar(biblioteca._id)}
-                  >
-                    <DeleteIcon />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-  );
+              </TableRow>{" "}
+            </TableHead>
+            <TableBody>
+              {data.bibliotecas.map((biblioteca) => (
+                <TableRow key={biblioteca._id}>
+                  <TableCell align="left">{biblioteca.nombre}</TableCell>
+                  <TableCell align="left">
+                    {biblioteca.correoElectronico}
+                  </TableCell>
+                  <TableCell align="left">
+                    {biblioteca.domicilio.ciudad}
+                  </TableCell>
+                  <TableCell align="left">{biblioteca.domicilio.cp}</TableCell>
+                  <TableCell align="left">
+                    {biblioteca.domicilio.direccion}
+                  </TableCell>
+                  <TableCell align="right">{biblioteca._id}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => props.handlerActualizar(biblioteca)}
+                    >
+                      <EditIcon />
+                    </Button>
+                    &nbsp;
+                    <Button
+                      sx={{ background: "#C70039", marginRight: "30px" }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => handlerEliminar(biblioteca._id)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
 }

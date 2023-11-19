@@ -42,65 +42,68 @@ export default function Libros(props) {
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
+  console.log(data.libros.length != 0);
+
   const handlerEliminar = (idDelLibro) => {
     eliminarLibro({ variables: { id: idDelLibro } });
   };
 
-  return (
-    <div>
-      <TableContainer
-        component={Paper}
-        sx={{
-          margin: "20px",
-          border: "2px solid RGBA(255, 84, 47,0.4)",
-          borderRadius: "15px",
-          backgroundColor: "#ECF0F1",
-        }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Nombre</TableCell>
-              <TableCell align="left">Descripcion</TableCell>
-              <TableCell align="left">Fecha Ingreso</TableCell>
-              <TableCell align="left">Genero</TableCell>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right" sx={{ marginRight: "60px" }}>
-                {" "}
-              </TableCell>
-            </TableRow>{" "}
-          </TableHead>
-          <TableBody>
-            {data.libros.map((libro) => (
-              <TableRow key={libro._id}>
-                <TableCell align="left">{libro.nombre}</TableCell>
-                <TableCell align="left">{libro.descripcion}</TableCell>
-                <TableCell align="left">{libro.fechaIngreso}</TableCell>
-                <TableCell align="left">{libro.genero}</TableCell>
-                <TableCell align="right">{libro._id}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => props.handlerActualizar(libro)}
-                  >
-                    <EditIcon />
-                  </Button>
-                  &nbsp;
-                  <Button
-                    sx={{ background: "#C70039", marginRight: "30px" }}
-                    variant="contained"
-                    color="error"
-                    onClick={() => handlerEliminar(libro._id)}
-                  >
-                    <DeleteIcon />
-                  </Button>
+  if (data.libros.length != 0)
+    return (
+      <div>
+        <TableContainer
+          component={Paper}
+          sx={{
+            margin: "20px",
+            border: "2px solid RGBA(255, 84, 47,0.4)",
+            borderRadius: "15px",
+            backgroundColor: "#ECF0F1",
+          }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="left">Nombre</TableCell>
+                <TableCell align="left">Descripcion</TableCell>
+                <TableCell align="left">Fecha Ingreso</TableCell>
+                <TableCell align="left">Genero</TableCell>
+                <TableCell align="right">ID</TableCell>
+                <TableCell align="right" sx={{ marginRight: "60px" }}>
+                  {" "}
                 </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-  );
+              </TableRow>{" "}
+            </TableHead>
+            <TableBody>
+              {data.libros.map((libro) => (
+                <TableRow key={libro._id}>
+                  <TableCell align="left">{libro.nombre}</TableCell>
+                  <TableCell align="left">{libro.descripcion}</TableCell>
+                  <TableCell align="left">{libro.fechaIngreso}</TableCell>
+                  <TableCell align="left">{libro.genero}</TableCell>
+                  <TableCell align="right">{libro._id}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => props.handlerActualizar(libro)}
+                    >
+                      <EditIcon />
+                    </Button>
+                    &nbsp;
+                    <Button
+                      sx={{ background: "#C70039", marginRight: "30px" }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => handlerEliminar(libro._id)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
 }

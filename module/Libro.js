@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const libroSchema = new Schema({
   nombre: String,
   descripcion: String,
-  fechaDeIngreso: String,
+  fechaIngreso: String,
   genero: [String],
 });
 
