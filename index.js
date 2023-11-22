@@ -141,7 +141,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.start().then(() => {
   server.applyMiddleware({ app });
   app.listen(puerto, async () => {
-    console.info(`Escuchando en http://localhost:${puerto}/graphql`);
+    console.info(`Escuchando en http://localhost:${puerto}`);
     mongoose
       .connect(uri)
       .then(() => console.info("Conexión establecida"))
