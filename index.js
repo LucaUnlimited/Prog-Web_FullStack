@@ -7,7 +7,7 @@ const Biblioteca = require("./module/Biblioteca.js");
 const path = require("path");
 const puerto = "3000";
 
-const uri = "mongodb://127.0.0.1:27017/tpFinal";
+const uri = "mongodb://user:1234@127.0.0.1:27017/tpFinal";
 
 app.use(express.static("public", { index: false }));
 
